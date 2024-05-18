@@ -1,0 +1,66 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+            /* justify-content: center; */
+}
+
+body {
+    background-color: #E4E9F7;
+}
+
+/* ======== here are first party header ========== */
+
+.container {
+    
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    padding-left: 70px;
+
+}
+
+.container .sheader {
+    width: 90%;
+    min-height: 40vh;
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.container .sheader #profile {
+    display: flex;
+    position: relative;
+    align-items: center;
+    padding-left: 50px;
+}
+
+.container .sheader #profile img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    padding: 9px;
+}
+
+.container .sheader a {
+    text-decoration: none;
+    color: #707070;
+    font-size: 19px;
+    /* font-style: oblique; */
+    font-weight: bold;
+    background-color: #FFF;
+    padding: 12px;
+    padding-left: 25px;
+    padding-right: 25px;
+    border-radius: 12px;
+
+}
+
+
+/* ======== here are content to change your information ========== */
+
