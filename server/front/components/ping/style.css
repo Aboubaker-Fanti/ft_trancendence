@@ -1,0 +1,1087 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+/* here i fixed dives position and content displayed */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  min-width: 270px;
+  background: var(--body-color);
+}
+
+
+:root {
+  /* ===== Colors ===== */
+  --body-color: #262b36;
+  --sidebar-color: #e8ebfb;
+  --primary-color: #695cfe;
+  --primary-color-light: #f6f5ff;
+  --toggle-color: #DDD;
+  --text-color: #707070;
+
+  --tran-02: all 0.2s ease;
+  --tran-03: all 0.3s ease;
+  --tran-04: all 0.4s ease;
+  --tran-05: all 0.5s ease;
+}
+
+
+.pong_container {
+  font-family: "Hexen", sans-serif;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.pong_container .pong_header {  
+  position: fixed;
+  margin: 0;
+  padding-left: 7.2em;
+  height: 100px;
+  width: 100%;
+}
+
+.pong_container .pong_navbar {
+  position: fixed;
+  min-height: 100vh;
+  width: 5em;
+}
+/* .pong_container .pong_main-content {
+  padding-top: 11vh;
+  padding-left: 7.2em;
+  height: 100vh;
+  width: 100%;
+} */
+
+/* ==============  here i will work with header content  ============== */
+#butt {
+  display: none;
+}
+
+.pong_header {
+  position: relative; 
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+  transition: var(--tran-05);
+}
+
+.pong_header .pong_profile {
+  right: 8px;
+  position: relative;
+  display: flex;
+  padding: 7px;
+  align-items: center;
+}
+
+.pong_header .pong_profile .image img {
+  width: 50px;
+  object-fit: cover;
+  height: 50px;
+  border-radius: 50%;
+  margin-left: 5px;
+}
+
+.pong_header .pong_profile .text {
+  color: #e8ebfb;
+  font-family: "Itim", cursive;
+}
+
+.pong_header .notification {
+  font-size: 18px;
+  color: #e8ebfb;
+  padding-right: 17px;
+  cursor: pointer;
+}
+
+/* ==============  here i will work with navbar content  ============== */
+
+.gm_sidebar {
+  position: relative;
+  top: 0;
+  left: 0;
+  height: calc(100vh - 80px);
+  border-radius: 25px;
+  border-radius: 14px;
+  padding: 14px 10px;
+  background-color: var(--sidebar-color);
+  transition: var(--tran-05);
+  width: fit-content;
+  margin: 1px 8px;
+  /* position: relative;
+  top: 0;
+  margin-top: 80px;
+  left: 0;
+  height: calc(100vh - 80px);
+  border-radius: 25px;
+  width: 88px;
+  padding: 10px 14px;
+  background-color: var(--sidebar-color);
+  transition: var(--tran-05); */
+}
+
+.gm_sidebar .image {
+  min-width: 60px;
+  display: flex;
+  align-items: center;
+}
+
+/* .gm_sidebar li {
+  height: 50px;
+  margin-top: 10px;
+  list-style: none;
+  display: flex;
+  align-items: center;
+} */
+
+.gm_sidebar li .icon {
+  /* display: flex; */
+  align-items: center;
+  justify-content: center;
+  min-width: 60px;
+  font-size: 20px;
+}
+
+.gm_sidebar li .icon {
+  color: var(--text-color);   
+  transition: var(--tran-02); 
+}
+
+.gm_sidebar header {
+  position: relative;
+}
+
+
+.pong_navbar .image-text img {
+  /* width: 70px; */
+  position: absolute;
+  border-radius: 6px;
+  /* top: -140px;
+  left: -140px; */
+  /* z-index: -1; */
+  padding: 15px;
+}
+
+.gm_sidebar li a {
+  /* height: 100%;
+  width: 100%; */
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: var(--tran-04);
+}
+
+.gm_sidebar li a:hover {
+  background: var(--primary-color);
+}
+
+.gm_sidebar li a:hover .icon {
+  color: var(--sidebar-color);
+}
+
+.gm_sidebar .menu-bar {
+  height: calc(100% - 20px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* ////// head ////// */
+@font-face {
+  font-family: 'Volax';
+  src: url('../assets/Valorax-lg25V.otf') format('opentype');
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Hexen';
+  src: url('../assets/Hexenkoetel-qZRv1.ttf') format('truetype');
+  font-weight: bold;
+  font-style: italic;
+  
+}
+
+.gm_cover_logo {
+  display: flex;
+  height: 52px;
+  width: 52px;
+  margin: 1px 8px;
+}
+
+.gm_logo {
+  height: 52px;
+  width: 52px;
+}
+
+.gm_container {
+  display: flex;
+  flex-direction: column;
+}
+.gm_body {
+  display: flex;
+  height: calc(100vh - 60px);
+}
+.bg_top {
+  position: fixed;
+  top: 0;
+  left: 68px;
+  height: 57px;
+  width: -webkit-fill-available;
+  background: var(--body-color);
+  z-index: 2;
+}
+.gm_profile {
+  position: fixed;
+  top: 0;
+  left: 0;
+  font-family: 'Volax', sans-serif;
+  display: flex;
+  height: fit-content;
+  width: 100%;
+  justify-content: end;
+  padding-right: 17px;
+  padding-top: 4px;
+  padding-left: 64px;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 3;
+}
+
+/* .gm_notif { */
+.notification {
+  display: flex;
+  font-size: 18px;
+  color: #e8ebfb;
+  padding-right: 17px;
+  cursor: pointer;
+  align-items: center;
+}
+
+.gm_txt {
+  display: flex;
+  color: #e8ebfb;
+  align-items: center;
+  padding-right: 17px;
+}
+
+.gm_img {
+  display: flex;
+  height: 50px;
+  width: 50px;
+  border-radius: 100%;
+  object-fit: cover;
+}
+
+/* ////// navbar ////// */
+.gm_navbar {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  flex-direction: column;
+  z-index: 2;
+  /* margin-top: -45px; */
+}
+
+.gm_cover_icon{
+  height: 20px;
+  width: 20px;
+}
+
+.gm_sidebar li a:hover {
+  background: var(--primary-color);
+}
+.gm_nav-link:hover {
+  background: var(--primary-color);
+}
+
+.gm_sidebar li a:hover .icon {
+  color: var(--sidebar-color);
+}
+
+.gm_menubar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.gm_menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.gm_menu-links {
+  Display: flex;
+  flex-direction: column;
+}
+
+.gm_nav-link{
+  list-style: none;
+  display: flex;
+  display: flex;
+  padding: 9px 4px;
+  margin: 1px 1px;
+  border-radius: 14px;
+}
+
+.gm_btn_content {
+  display: flex;
+}
+
+/* ////// main content ////// */
+.gm_main-content {
+  display: flex;
+  z-index: 1;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+  /* height: fit-content; */
+  justify-content: space-between;
+  padding: 60px 0px 45px 68px;
+}
+
+.gm_bgcontent {
+  position: fixed;
+  top: 54px;
+  height: calc(100% - 55px - 25px - 6px);
+  width: calc(100% - 68px - 8px);
+  /* object-fit: cover; */
+  object-fit: fill;
+  margin: 3px 0px 0px 0px;
+  z-index: 0;
+}
+
+.game_container {
+  z-index: 1;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  height: 100vh;
+  min-height: fit-content;
+}
+
+.rl_game {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: row;
+  z-index: 1;
+}
+
+.gm_remote_game {
+  display: flex;
+  width: 290px;
+  /* height: 50%; */
+  height: fit-content;
+  min-height: 150px;
+  padding: 10px 15px 15px 15px;
+  margin: 2px 2px 2px 2px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(25, 26, 29, 0.6);
+  color: #e8ebfb;
+}
+
+.gm_local_game {
+  font-family: 'Volax', sans-serif;
+  /* width: 290px;
+  height: fit-content; */
+  height: calc((100vh - 175px) / 4);
+  width: calc((100vw - 70px) / 3.5);
+  max-width: 300px;
+  max-height: 250px;
+  min-height: 180px;
+  min-width: 226px;
+  /* min-height: 150px; */
+  padding: 10px 15px 15px 15px;
+  margin: 2px 2px 2px 2px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(25, 26, 29, 0.6);
+  color: #e8ebfb;
+  /* border-radius: 22%; */
+  /* border-radius: 1750px; */
+  border-radius: 14px;
+}
+
+.gm_description_game {
+  /* width: 290px; */
+  height: fit-content;
+  /* min-height: 150px; */
+  padding: 10px 15px 15px 15px;
+  margin: 2px 22px 2px 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(25, 26, 29, 0.7);
+  color: #e8ebfb;
+  border-radius: 6px;
+  font-size: 20px;
+  font-family: "Hexen", sans-serif;
+  text-transform: capitalize;
+}
+
+.gm_start_game {
+  background-color: black;
+  padding: 8px 20px;
+  border-radius: 88px;
+  cursor: pointer;
+}
+
+.gm_sidebar .menu-bar {
+  height: calc(100% - 20px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* ?notification 0 */
+
+.notifi_btn {
+  display: none;
+  width: 200px;
+  height: 250px;
+  background-color: #474554;
+  position: absolute;
+  right: 120px;
+  top: 65px;
+  border-radius: 25px;
+  overflow-y: auto;
+}
+
+.notifi_btn::-webkit-scrollbar {
+display: none;
+}
+
+.notifi_btn.active {
+  display: flex;
+  flex-direction: column;
+}
+
+.notifi_btn .send_request {
+  width: 100%;
+  height: 55px;
+  border-radius: 15px;
+  background-color: #7c7d85;
+  padding: 3px;
+  display: flex;
+  margin: 2px;
+  justify-content: center;
+}
+
+.send_request .img_text {
+  align-items: center;
+  display: flex;
+}
+
+.send_request .img_text h6{
+  text-align:start;
+  margin: 5px;
+  width: 80px;
+}
+
+.send_request .img_text img{
+  width: 45px;
+  height: 45px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.send_request .acc_dec button  {
+  width: 50px;  
+  margin: 1px;
+  border-radius: 15px;
+  border: none;
+  height: 20px;
+  cursor: pointer;
+}
+
+.gm_start_game:hover {
+  /* transform: rotate(15deg); */
+  /* transform: skew(10deg); */
+  /* transform: translate(0px , -10px); */
+  /* transform: rotate(15deg) translateْ(50px); */
+  transform: scale(1.1);
+}
+
+/* // =========================== here i will work with media =========================== */
+/* @media (min-width:518px) and (max-width: 623px) {
+  .gm_local_game {
+    width: 219px;
+  }
+}
+
+@media (min-width: 377px) and (max-width: 517px) {
+  .rl_game {
+    flex-direction: column;
+  }
+  .gm_local_game {
+    width: 290px;
+  }
+}
+
+@media (max-width: 376px) {
+  .rl_game {
+    flex-direction: column;
+  }
+  .gm_local_game {
+    width: 219px;
+  }
+} */
+
+@media screen and (max-width: 570px) {
+  .rl_game {
+    flex-direction: column;
+  }
+  .gm_local_game {
+    width: calc((100vw - 70px) / 2);
+  }
+}
+
+/* @media (max-width: 444px) {
+
+  .gm_sidebar {
+      margin-top: 80px;
+      position: relative;
+      top: 0;
+      left: 0;
+      border-radius: 25px;
+      height: 1px;
+      width: 88px;
+      padding: 3px 14px;
+      background-color: var(--body-color);
+      transition: var(--tran-05);
+      overflow: hidden;
+  }
+
+  .gm_sidebar.active {
+      height: 100vh;
+      padding: 10px 14px;
+      background-color: var(--sidebar-color);
+  }
+
+  #butt {
+      display: flex;
+      font-size: 30px;
+      cursor: pointer;
+      color: #e8ebfb;
+  }
+} */
+
+/* @media (max-width: 350px) {
+
+  #butt {
+      display: flex;
+      font-size: 30px;
+      cursor: pointer;
+      color: #e8ebfb;
+  }
+}
+
+@media (max-width: 400px) {
+  .pong_header .pong_profile .image img {
+      display: none;
+  }
+}
+ */
+
+
+
+
+
+  /* game here -------- */
+
+  .pong_container .games {
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+  left: 0;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.games .conta {
+  width: 73%;
+  height: 60%;
+  background-color: red;
+  position: relative;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  margin-left: 91px;
+}
+
+.conta .meryem {
+  width: 40%;
+  height: 50%;
+  background-color: blue;
+  margin: 15px;
+  cursor: pointer;
+}
+
+.conta .moloaa {
+  width: 40%;
+  height: 50%;
+  background-color: rgb(129, 129, 148);
+  margin: 15px;
+  cursor: pointer;
+
+}
+
+
+  /* mer_cont */
+    
+  .pong_container .pong_main-content {
+    /* background-color: green; */
+    width: 100%;
+    padding-top: 11vh;
+    padding-left: 7em;
+    height: 100vh;
+    color: white;
+  }
+
+.pong_main-content .pong_mer_cont {
+    width: 99%;
+    height: 99%;
+    background-image: url(./pong_background.png);
+    background-size: 100% 100%;
+    /* margin: 15px; */
+    background-repeat: no-repeat;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* margin-right: 11%; */
+    color: white;
+  }
+  
+  .pong_mer_cont .pong_re_local {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+  
+  .pong_re_local #remote_game {
+    width: 290px;
+    height: 50%;
+    padding: 10px 15px 15px 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(25, 26, 29, 0.6);
+  }
+  
+  .pong_re_local #local_game {
+    width: 290px;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px 15px 15px 15px;
+    align-items: center;
+    background-color: rgba(25, 26, 29, 0.6);
+    
+  }
+  
+  
+  #local_game  .input {
+    width: 200px;
+    height: 40px;
+    border: none;
+    outline: none;
+    /* caret-color: rgb(255, 81, 0); */
+    background-color: rgb(255, 255, 255);
+    border-radius: 30px;
+    padding-left: 15px;
+    letter-spacing: 0.8px;
+    color: rgb(19, 19, 19);
+    font-size: 13.4px;
+  }
+  
+  
+  .pong_mer_cont #butt_game {
+    padding: 11px;
+    background-color: black;
+    border-radius: 15px;
+    cursor: pointer;
+  }
+
+  .pong_mer_cont #local_butt_game {
+    padding: 11px;
+    background-color: black;
+    border-radius: 15px;
+    cursor: pointer;
+  }
+
+  
+  .pong_mer_cont .discription_game {
+    width: 100%;
+    display: flex;
+    padding: 15px;
+    justify-content: center;
+  }
+  
+  .pong_mer_cont .discription_game .text {
+    background-color: rgba(25, 26, 29, 0.9);
+    padding: 15px;
+    width: 55%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: "Times New Roman", Times, serif;
+    /* opacity: 0.6; */
+    /* background-color: transparent; */
+
+    
+
+    /* justify-content:; */
+
+    /* font-family: "Ubuntu", sans-serif;
+    font-weight: 400;
+    font-style: italic; */
+      /* text-rendering: auto; */
+  }
+  
+
+   /*  ======= ====== ====== ======= ======= ====== ======= ======= */
+
+
+   #description {
+    font-size: 20px;
+    color: #06b4cf
+
+  }
+
+
+   .container .tournament_players {
+      position: fixed;
+      display: none;
+      width: 100%;
+      height: 100%;
+      top: 0px;
+      left: 0px;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(4, 5, 5, 0.6);
+
+      /* w; */
+      /* background-color: red; */
+   }
+  .players {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    width: 450px;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+    background-color: rgba(0, 0, 0, 0.9);
+    
+  }
+
+  .players h2 {
+    padding: 15px;
+    margin: 25px;
+    width: 18px 32px;
+    background-color: rgb(235, 222, 222);
+    border-radius: 25px;
+  }
+
+  .players input {
+    padding: 11px;
+    margin: 10px;
+    border-radius: 15px;
+  }
+
+  .bi-x {
+    display: flex;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    cursor: pointer;
+    color: white;
+    font-size: 35px;
+  }
+
+  .players h3 {
+    padding: 10px;
+    margin: 10px;
+    width: 155px;
+    background-color: rgb(78, 69, 69);
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+  }
+  
+
+   /*  ======= ====== ====== ======= ======= ====== ======= ======= */
+
+
+
+   .gm_container .tournament_players {
+      position: fixed;
+      display: none;
+      width: 100%;
+      height: 100%;
+      top: 0px;
+      left: 0px;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(4, 5, 5, 0.6);
+      z-index: 10;
+   }
+
+  .players {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    width: 450px;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+    background-color: rgba(0, 0, 0, 0.9);
+    
+  }
+
+  .players h2 {
+    padding: 15px;
+    margin: 25px;
+    width: 18px 32px;
+    background-color: rgb(235, 222, 222);
+    border-radius: 25px;
+  }
+
+  .players input {
+    padding: 11px;
+    margin: 10px;
+    border-radius: 15px;
+  }
+
+  .bi-x {
+    display: flex;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    cursor: pointer;
+    color: white;
+    font-size: 35px;
+  }
+
+  .players h3 {
+    padding: 10px;
+    margin: 10px;
+    width: 155px;
+    background-color: rgb(78, 69, 69);
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  /* tournament */
+
+  .container .tournament_players {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(4, 5, 5, 0.6);
+
+    /* w; */
+    /* background-color: red; */
+ }
+
+ .players {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  width: 450px;
+  justify-content: center;
+  align-items: center;
+  padding: 25px;
+  background-color: rgba(0, 0, 0, 0.9);
+  
+}
+
+.players h2 {
+  padding: 15px;
+  margin: 25px;
+  width: 18px 32px;
+  background-color: #0E5A84;
+  border-radius: 25px;
+}
+
+.players input {
+  padding: 11px;
+  margin: 10px;
+  border-radius: 15px;
+}
+
+.bi-x {
+  display: flex;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  cursor: pointer;
+  color: white;
+  font-size: 35px;
+}
+
+.players h3 {
+  padding: 10px;
+  margin: 10px;
+  width: 185px;
+  background-color: #0E5A84;
+  border-radius: 25px;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+}
+
+
+
+
+
+  /* anomation on remote game  */ 
+  .spinner {
+    display: none;
+    background-image: linear-gradient(rgb(186, 66, 255) 35%,rgb(0, 225, 255));
+    width: 70px;
+    height: 70px;
+    animation: spinning82341 1.7s linear infinite;
+    text-align: center;
+    border-radius: 50px;
+    filter: blur(1px);
+    box-shadow: 0px -5px 20px 0px rgb(186, 66, 255), 0px 5px 20px 0px rgb(0, 225, 255);
+  }
+  
+  .spinner1 {
+    background-color: rgb(36, 36, 36);
+    width: 70px;
+    height: 70px;
+    border-radius: 50px;
+    filter: blur(10px);
+  }
+  
+
+  #cancel_game {
+    padding: 11px;
+    display: none;
+    background-color: black;
+    border-radius: 15px;
+    cursor: pointer;
+  }
+
+/* 
+#1190D0
+#3EFEFF
+#82C3D5
+#6BA1B0
+ */
+
+ .gm_container .success_update {
+  /* display: flex; */
+  position: fixed;
+  width: 330px;
+  height: 55px;
+  background-color: white;
+  color: red;
+  align-items: center;
+  padding: 15px;
+  right: 0;
+  margin: 15px;
+  bottom: 0;
+  z-index: 3;
+  justify-content: center;
+  display: none;
+}
+
+@media (max-width: 380px) {
+  
+  .gm_sidebar {
+      /* margin-top: 80px; */
+      position: relative;
+      top: 0;
+      left: 0;
+      border-radius: 25px;
+      border-radius: 14px;
+      height: 1px;
+      padding: 14px 10px;
+      /* width: 88px; */
+      width: fit-content;
+      padding: 3px 14px;
+      background-color: var(--body-color);
+      transition: var(--tran-05);
+      overflow: hidden;
+  }
+
+  .gm_sidebar.active {
+    position: relative;
+    top: 0;
+    left: 0;
+    height: calc(100vh - 80px);
+    border-radius: 25px;
+    border-radius: 14px;
+    padding: 14px 10px;
+    background-color: var(--sidebar-color);
+    transition: var(--tran-05);
+    width: fit-content;
+    margin: 1px 8px;
+  }
+  .gm_main-content {
+    padding-left: 4px;
+  }
+  .gm_bgcontent {
+    width: calc(100% - 8px);
+  }
+  .gm_profile {
+    padding-right: 0px;
+  }
+  .gm_txt {
+    padding-right: 4px;
+  }
+  .notification {
+    padding-right: 4px;
+  }
+  #butt {
+    display: flex;
+    font-size: 30px;
+    cursor: pointer;
+    color: #e8ebfb;
+    align-items: center;
+    width: -webkit-fill-available;
+    margin-left: 2px;
+  }
+}
+
+/* white-space: nowrap;
+    width: 204px;
+    overflow: hidden;
+    text-overflow: ellipsis; */

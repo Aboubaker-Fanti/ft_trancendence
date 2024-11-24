@@ -1,0 +1,220 @@
+
+@font-face {
+    font-family: 'Volax';
+    src: url('../../../components/assets/Valorax-lg25V.otf') format('opentype');
+    font-weight: bold;
+    font-style: italic;
+}
+
+.p_box_result {
+	position:absolute;
+	z-index: 100;
+	display: flex;
+	margin-top: calc((((99vh - min(99vw, 99vh)) * 0.1)));
+	margin-left: calc((((99vw - min(99vw, 99vh)) / 2)));
+	width: calc(( min(99vw, 99vh)));
+	/* min-width: 350px; */
+}
+
+.p_container {
+	position: relative;
+	width: calc(100vw);
+	height: calc(100vh);
+}
+
+.p_canvas_background {
+	position: absolute;
+	color: rgba(0, 0, 0, 1);
+	z-index: 0;
+	width: calc(100vw);
+	height: calc(100vh);
+	display: flex;
+}
+
+.p_first {
+	/* width: 360px; */
+	font-family: 'Volax', sans-serif;
+	text-align: left;
+	/* color: white; */
+	/* color: rgb(45, 204, 45); */
+	color: #FF000C;
+	text-shadow: 1px 1px rgb(255, 255, 255, 0.8);
+	padding-top: 60px;
+	padding-left: 50px;
+	font-size: min(30px, 6.5vw);
+	font-size: 	min(calc(100vw / 33), calc(100vh / 33));
+    /* padding-right: 10px; */
+	display: flex;
+    flex-direction: row;
+	justify-content: space-between;
+}
+
+.double_point {
+	font-family: 'Volax', sans-serif;
+	color: #11698C;
+	display: flex;
+	padding-top: 51.06px;
+	font-size: 	calc(100vw / 33);
+	font-size: min(calc(100vw / 33), calc(100vh / 33));
+	padding-inline: min(calc(200vw / 330), calc(200vh / 330));
+}
+
+.p_second {
+	/* width: 360px; */
+	font-family: 'Volax', sans-serif;
+	text-align: right;
+	/* color: white; */
+	/* color: rgb(204, 45, 45); */
+	color: #A4FF25;
+	text-shadow: 1px 1px rgb(255, 255, 255, 0.8);
+	padding-top: 60px;
+	padding-right: 50px;
+	font-size: 	calc(100vw / 33);
+	font-size: min(calc(100vw / 33), calc(100vh / 33));
+    /* padding-left: 10px; */
+	display: flex;
+    flex-direction: row;
+	justify-content: space-between;
+}
+
+#c {
+	position: absolute;
+	width: min(99vw, 99vh);
+	height: min(99vw, 99vh);
+	/* height: 100vh; */
+	display: block;
+	z-index: 1;
+	padding: 0px;
+	margin: 0px;
+	margin-top: calc(((99vh - min(99vw, 99vh)) * 0.1));
+	margin-left: calc(((99vw - min(99vw, 99vh)) / 2));
+	margin-bottom: 1%;
+	padding-left: -4rem;
+}
+
+.p_background_descounter {
+	/* display: 'none'; */
+	display: 'flex';
+	position: absolute;
+	z-index: 100;
+	width: calc(100vw);
+	height: calc(100vh);
+	background-color: rgba(0,0,0,0.6);
+    align-items: center;
+    justify-content: center;
+}
+
+.p_descounter {
+	color:white;
+	/* width: calc(100vw - 100px); */
+	font-size: 26px;
+}
+
+.p_popup_replay {
+	font-family: 'Volax', sans-serif;
+	display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    width: calc(100vw);
+    height: calc(100vh);
+    color: #d6ddd5;
+    flex-direction: column; /* Stack children vertically */
+    justify-content: center;
+    align-items: center;
+    font-size: 5vw;
+    background-color: rgba(0, 0, 0, 0.6);
+    text-shadow: 2vw 0vw 8vw rgba(0, 0, 0, 0.8);
+}
+
+.p_ptn_replay{
+	height: 58px;
+    width: 140px;
+    border-radius: 100px;
+    font-size: 17px;
+    margin-bottom: 32px;
+    margin-top: 13px;
+    color: rgb(164 255 37);
+    background-color: rgba(0, 0, 0, 0.2);
+	cursor: pointer;
+	/* cursor: pointer; */
+}
+
+.p_ptn_menu {
+	color: rgb(255 0 12);
+	cursor: pointer;
+	/* cursor: auto; */
+}
+
+.p_ptn_replay:hover {
+	color: rgb(161 227 68);
+}
+
+.p_ptn_menu:hover {
+	color: rgb(219 24 33);
+}
+
+
+/* .div-popup-delete {
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	z-index: 1000;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+  }
+  
+.popup-delete {
+// overflow-x: hidden;
+// overflow-y: auto; 
+animation-name: pop;
+animation-duration: 0.5s;
+animation-timing-function: ease-in-out;
+} */
+
+/* // animation */
+
+@keyframes pop {
+	0% {
+		transform: scale(0.7);
+	}
+	/* 0% {
+	  transform: translateY(-220px);
+	} */
+	/* 25% {
+	  transform: translateY(20px);
+	}
+	50% {
+	  transform: translateY(30px);
+	}
+	75% {
+	  transform: translateY(40px);
+	} */
+	/* 100% {
+	  transform: translateY(0px);
+	} */
+	100% {
+		transform: scale(1);
+	}
+  }
+
+.animation_popup {
+	display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    width: calc(100vw);
+    height: calc(100vh);
+    color: #d6ddd5;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+	animation-name: pop;
+	animation-duration: 0.5s;
+	animation-timing-function: ease-in-out; 
+}

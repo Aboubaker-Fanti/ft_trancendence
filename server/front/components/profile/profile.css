@@ -1,0 +1,1582 @@
+
+/* here i fixed dives position and content displayed */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: 'Hexen';
+  src: url('../assets/Hexenkoetel-qZRv1.ttf') format('truetype');
+  font-weight: bold;
+  font-style: italic;
+  
+}
+@import url('https://fonts.googleapis.com/css2?family=Itim&family=Slabo+27px&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
+
+@font-face {
+  font-family: 'Volax';
+  src: url('../assets/Valorax-lg25V.otf') format('opentype');
+  font-weight: bold;
+  font-style: italic;
+}
+
+/* font-family: "Itim", cursive;
+font-weight: 400;
+font-style: normal; */
+
+
+body {
+  height: 100vh;
+  background: var(--body-color);
+}
+/* .player1, .player2 {
+  max-width: 150px; 
+  white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+  display: block; 
+} */
+.player1, .player2 {
+  max-width: 100px; 
+  white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+  display: block; 
+}
+
+
+:root {
+  --body-color: #1e1e2f;
+  --sidebar-color: #2f304a;
+  --primary-color: #695cfe;
+  --primary-color-light: #f6f5ff;
+  --toggle-color: #DDD;
+  --text-color: #707070;
+  --tran-02: all 0.2s ease;
+  --tran-03: all 0.3s ease;
+  --tran-04: all 0.4s ease;
+  --tran-05: all 0.5s ease;
+}
+
+#hist {
+  margin-top: 10px;
+  color: #bdbdf6;
+}
+
+.send_friend_list {
+  font-family: "Volax", sans-serif;
+  font-size: 10px;
+
+}
+
+.match_wl {
+  font-size: 25px;
+}
+
+.container {
+  /* color: #9090f0; */
+  font-family: "Hexen", sans-serif;
+   /* font-family: "Itim", cursive; */
+   font-weight: 400;
+   font-style: normal;
+   
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.container .header {  
+  position: fixed;
+  background-color: #28293e;
+  margin: 0;
+  padding-left: 7.2em;
+  height: 100px;
+  width: 100%;
+}
+
+.container .navbar {
+  position: fixed;
+  min-height: 100vh;
+  width: 5em;
+}
+
+.container .main-content {
+  padding-top: 10vh;
+  padding-left: 7.2em;
+  height: 90vh;
+  width: 100%;
+}
+
+/* ==============  here i will work with header content  ============== */
+.container .bi-person-add {
+  display: none;
+}
+#butt {
+  display: none;
+}
+
+.header {
+  position: relative; 
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+  transition: var(--tran-05);
+}
+
+.header .profile {
+  right: 8px;
+  position: relative;
+  display: flex;
+  padding: 7px;
+  align-items: center;
+}
+
+.header .profile .image img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-left: 5px;
+}
+
+.header .profile .text {
+  /* font-family: "Volax", sans-serif; */
+  font-family: "Itim", cursive;
+  /* font-family: "Slabo 27px", serif; */
+  font-weight: 800;
+  font-style: normal;
+  
+
+  color: #e8ebfb;
+}
+
+.header .notification {
+  font-size: 18px;
+  color: #e8ebfb;
+  padding-right: 17px;
+  cursor: pointer;
+}
+
+/* .sear {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sear .seafr.active {
+  display: flex;
+}
+
+.sear .seafr {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  margin-top: 6vh;
+  min-height: 100px;
+  width: 260px;
+  border-radius: 25px;
+}
+
+.sear .seafr ul {
+  background-color: rgb(155, 150, 150);
+  border-radius: 20px;
+}
+.sear .seafr ul li {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+
+}
+
+.sear .seafr #click_btn {
+  padding: 5px;
+  background-color: rgb(251, 251, 244);
+  border-radius: 25px;
+}
+
+.sear .seafr img {
+  width: 50px;
+} */
+
+/* ==============  here i will work with navbar content  ============== */
+
+.sidebar {
+  position: relative;
+  top: 0;
+  margin-top: 130px;
+  left: 15px;
+  height: calc(100vh - 160px);
+  border-radius: 25px;
+  width: 88px;
+  padding: 10px 14px;
+  background-color: var(--sidebar-color);
+  transition: var(--tran-05);
+}
+
+.sidebar .image {
+  min-width: 60px;
+  display: flex;
+  align-items: center;
+}
+
+.sidebar li {
+  height: 50px;
+  margin-top: 10px;
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+
+.sidebar li .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 60px;
+  font-size: 20px;
+}
+
+.sidebar li .icon {
+  color: #fffefe;   
+  transition: var(--tran-02); 
+}
+
+.sidebar header {
+  position: relative;
+}
+
+.navbar .image-text img {
+  /* width: 70px; */
+  position: absolute;
+  border-radius: 6px;
+  /* top: -140px;
+  left: -140px;
+  z-index: -1; */
+  padding: 15px;
+}
+
+
+.sidebar li a {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: var(--tran-04);
+}
+
+.sidebar li a:hover {
+  background: var(--primary-color);
+}
+
+.sidebar li a:hover .icon {
+  color: var(--sidebar-color);
+}
+
+.sidebar .menu-bar {
+  /* margin-top: 20px; */
+  height: calc(100% - 20px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* // =========================== here i will work with media =========================== */
+
+
+.content .profile #avatar  {
+  position: absolute;
+  width: 80px;
+  object-fit: cover;
+  height: 80px;
+  border-radius: 50%;
+  top: 41vh;
+  left: 140px;
+  /* z-index: 1; */
+
+}
+
+@media (min-width: 445px) and (max-width: 515px) {
+  /* .sear .seafr {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      margin-top: 6vh;
+      min-height: 100px;
+      width: 260px;
+      border-radius: 25px;
+      margin-left: 95px;
+  }
+  
+  .sear {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+  } */
+}
+
+
+
+
+/* here i will work with main content  */
+
+.main-content .main {
+  /* background-color: red; */
+  /* top: 20px; */
+  display: flex;
+  height: 88vh;
+  width: 98%;
+  justify-content: space-between;
+}
+
+.main .content {
+  width: 80%;
+  margin: 5px;
+  /* background-color: yellow; */
+  height: 87vh;
+}
+
+.content .profile {
+  width: 99%;
+  margin: 3px;
+  height: 40vh;
+  /* background-color: blue; */
+}
+
+.content .profile #img_profile  {
+  object-fit: cover;
+  width: 100%;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  height: 35vh;
+}
+
+
+.content .profile .matt  {
+  display: none;
+  transform: translateY(-90px);
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  
+}
+.content .profile .matt h3 {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  color: white;
+}
+
+.content .profile .cent  {
+  background-color: rgb(129, 129, 148, 0.5);
+  display: flex;
+  
+  padding: 5px 15px;
+  transform: translateY(-11px);
+  width: 70%;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: 35px;
+
+}
+
+
+
+
+
+
+.content .profile .text  {
+  display: flex;
+  transform: translateY(-11px);
+  width: 94%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.content .profile #profile_username  {
+  /* justify-content: center; */
+  /* font-family: "Slabo 27px", serif; */
+  font-family: "Itim", cursive;
+
+  display: flex;
+  align-items: center;
+  font-size: 25px;
+  padding-left: 100px;
+  color: #9090f0;
+}
+
+.content .profile #edit_profile  {
+  /* border: 5px #e8ebfb; */
+  padding: 8px 14px;
+  background-color: #ff5e57;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.content .matches {
+  width: 99%;
+  margin: 3px;
+  height: 45.5vh;
+  /* background-color: aqua; */
+  display: flex;
+  justify-content: space-between;
+  /* align-items: center; */
+}
+
+
+.content .matches .match_wl {
+  width: 43%;
+  height: 45vh;
+  /* background-color: darkgrey; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #52ffb8;
+  /* margin: 15px; */
+}
+
+.content .matches .match_wl .l_w {
+width: 80%;
+margin-top: 35px;
+
+display: flex;
+/* align-items: center; */
+margin: 5px;
+justify-content: space-between;
+
+
+}
+
+.content .matches .match_wl  .matchess{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5% 10%;
+  background-color: #292b3a;
+  border-radius: 25px;
+  /* border-radius: 25px; */
+}
+
+.content .matches .match_wl .l_w .loss,
+.content .matches .match_wl .l_w .won {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5% 14%;
+  background-color: #292b3a;
+  border-radius: 25px;
+  margin-top: 15px;
+
+}
+
+.cc {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.content .matches .match_history {
+width: 450px;
+display: flex;
+flex-direction: column;
+height: 45vh;
+background-color: #343650;
+align-items: center;
+overflow-y: auto;
+border-radius: 25px;
+/* justify-content: center; */
+
+}
+
+.match_history {
+  color: #9090f0;
+}
+
+.match_history .tag_game_history {
+  width: 100%;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+}
+
+.match_history .ping_game_history {
+  width: 100%;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+}
+
+.match_history .tur_game_history {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tur_game_history  .first_pl, .second_pl {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.navv {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;  
+  margin-top: 5px;
+}
+
+.navv h2 {
+  padding: 8px 12px;
+  background-color: #4b4d67;
+  cursor: pointer;
+  color: #57c7ff;
+  border-radius: 15px;
+}
+
+.content .matches .match_history::-webkit-scrollbar {
+display: none;  /* Hides the scrollbar */
+}
+
+.content .matches .match_history .match {
+margin-top: 10px;
+}
+
+
+.content .matches .match_history img {
+
+width: 50px;  
+height: 50px;
+border-radius: 50%;
+object-fit: cover;
+}
+
+#datofgame {
+  display: flex;
+  position: absolute;
+ bottom: 0px;
+  justify-content: center;
+  width: 100%;
+ font-size: 10px;
+ color: white;
+}
+
+.play {
+display: flex;        
+position: relative;
+align-items: center; 
+justify-content: space-between;
+margin-top: 15px;
+width: 95%;
+}
+
+.play h2 {
+margin: 0 15px; 
+}
+
+/* here i will add friend list  */
+
+.main .friends_list {
+width: 100%;
+height: 87vh;
+margin: 5px;
+/* background-color: #587579; */
+background-color: #343650;
+color: #a0a5ba;
+display: flex;
+flex-direction: column;
+align-items: center;
+overflow-y: auto;
+border-radius: 25px;
+}
+
+.main .friends_list::-webkit-scrollbar {
+display: none;  
+}
+
+
+.main .friends_list .send_friend {
+display: flex;
+margin-top: 19px;
+margin-bottom: 19px;
+}
+
+.main .friends_list .send_friend input{
+background-color: rgb(73, 70, 70);
+border: none;
+padding: 15px 20px;
+border-radius: 20px;
+width: 90%;
+margin-left: 9px;
+color: white;
+/* box-shadow: #5b6164 0px 10px 10px -5px; */
+border-inline: 2px solid transparent;
+}
+
+.bi-octagon-fill {
+  color: gray;
+  position: absolute;
+  padding-top: 29px;
+  padding-left:29px;
+  font-size: 15px;
+  
+  /* left: 5px; */
+  /* justify-content: flex-end; */
+}
+
+.main .friends_list #text {
+font-size: 30px;
+}
+
+.main .friends_list .friends{
+display: flex;
+flex-direction: column;
+/* align-items: center; */
+}
+
+.main .friends_list img {
+width: 45px;
+height: 45px;
+object-fit: cover;
+/* border-radius: 50%; */
+}
+
+.main .friends_list .proimage {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  }
+
+.main .friends_list .friends .friend{
+
+display: flex;
+align-items: center;
+margin-top: 11px;
+cursor: pointer;
+}
+
+
+.friend h2 {
+margin: 0 5px; 
+}
+
+
+
+/* here i will set code of update profile  */
+
+.main-content .update_data {
+display: none;
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(0, 0, 0, 0.5); /* Background with opacity */
+align-items: center;
+justify-content: center;
+}
+
+.main-content .update_data.active  {
+display: flex;
+}
+
+.main-content .update_data .profile i{
+color: #f6f5ff;
+font-size: 25px;
+width: 100%;
+cursor: pointer;
+display: flex;
+justify-content: flex-end;
+}
+
+.update_data .profile {
+  position: relative;
+width: 530px;
+height: 500px;
+background-color: #343650;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+align-items: center;
+padding: 5px;
+border-radius: 10px;
+}
+
+
+/* .update_data .profile #update_img_profile {
+width: 98%;
+margin: 5px;
+height: 25vh;
+display: flex;
+cursor: pointer;
+} */
+
+.update_data .profile .update_avatar {
+cursor: pointer;
+width: 100%;
+display: flex;
+justify-content: center;
+}
+
+.update_data .profile #update_avatar {
+position: absolute;
+object-fit: cover;
+/* position: ; */
+width: 100px;
+height: 100px;
+border-radius: 50%;
+display: flex;
+top:  15px;
+}
+
+.update_data .profile .form {
+display: flex;
+width: 100%;
+align-items: center;
+flex-direction: column;
+padding-bottom: 15px;
+}
+
+.update_data .profile .form .input {
+width: 72%;
+justify-content: flex-end;
+
+background: rgb(73, 70, 70);
+border: none;
+padding: 8px 20px;
+margin: 15px 2px;
+border-radius: 20px;
+box-shadow: #5b6164 0px 10px 10px -5px;
+border-inline: 2px solid transparent;
+}
+
+.update_data .profile .form div {
+width: 80%;
+}
+
+
+
+.update_data .profile .form #main_label {
+margin-right: 34px;
+
+}
+
+
+.update_data .profile .form label {
+margin: 15px;
+color: white;
+}
+
+.cyberpunk-checkbox {
+appearance: none;
+width: 20px;
+height: 20px;
+border: 2px solid #30cfd0;
+border-radius: 5px;
+background-color: transparent;
+display: inline-block;
+position: relative;
+margin-right: 10px;
+cursor: pointer;
+}
+
+.cyberpunk-checkbox:before {
+content: "";
+background-color: #30cfd0;
+display: block;
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%) scale(0);
+width: 10px;
+height: 10px;
+border-radius: 3px;
+transition: all 0.3s ease-in-out;
+}
+
+.cyberpunk-checkbox:checked:before {
+transform: translate(-50%, -50%) scale(1);
+}
+
+
+.update_data .profile  .form .input:focus {
+outline: none;
+}
+
+.update_data .profile .form .login-button {
+width: 40%;
+cursor: pointer;
+font-weight: bold;
+background: rgb(73, 70, 70);
+color: white;
+padding-block: 15px;
+margin: 20px auto;
+border-radius: 20px;
+box-shadow: #5b6164 0px 10px 10px -5px;
+border: none;
+transition: all 0.2s ease-in-out;
+
+}
+
+
+/* data was update successfully */
+
+.container .success_update {
+  /* display: flex; */
+  position: fixed;
+  width: 320px;
+  height: 55px;
+  background-color: white;
+  color: green;
+  align-items: center;
+  padding: 15px;
+  right: 0;
+  margin: 15px;
+  bottom: 0;
+  display: none;
+  z-index: 1;
+  font-family: "Hexen", sans-serif;
+
+}
+
+.container .send_friend_message {
+  /* display: flex; */
+  position: absolute;
+  width: 320px;
+  height: 55px;
+  background-color: white;
+  color: green;
+  align-items: center;
+  padding: 15px;
+  right: 0;
+  margin: 15px;
+  bottom: 0;
+  z-index: 1;
+  display: none;
+}
+
+
+/* ?notification 0 */
+
+.notifi_btn {
+  display: none;
+  width: 200px;
+  height: 250px;
+  background-color: #474554;
+  position: absolute;
+  right: 120px;
+  top: 65px;
+  border-radius: 25px;
+  overflow-y: auto;
+}
+
+.notifi_btn::-webkit-scrollbar {
+display: none;
+}
+
+.notifi_btn.active {
+  display: flex;
+  flex-direction: column;
+}
+
+.notifi_btn .send_request {
+  width: 100%;
+  height: 55px;
+  border-radius: 15px;
+  background-color: #7c7d85;
+  padding: 3px;
+  display: flex;
+  margin: 2px;
+  justify-content: center;
+}
+
+
+.send_request .img_text {
+  align-items: center;
+  display: flex;
+  font-family: "Volax", sans-serif;
+}
+
+.send_request .img_text h6{
+  text-align:start;
+  margin: 5px;
+  width: 80px;
+}
+
+.send_request .img_text img{
+  width: 45px;
+  height: 45px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.send_request .acc_dec button  {
+  width: 50px;  
+  margin: 1px;
+  border-radius: 15px;
+  border: none;
+  height: 20px;
+  cursor: pointer;
+}
+
+
+
+  /* game here -------- */
+
+  .container .games {
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+  left: 0;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.games .conta {
+  width: 73%;
+  height: 60%;
+  background-color: red;
+  position: relative;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  margin-left: 91px;
+}
+
+.conta .meryem {
+  width: 40%;
+  height: 50%;
+  background-color: blue;
+  margin: 15px;
+  cursor: pointer;
+}
+
+.conta .moloaa {
+  width: 40%;
+  height: 50%;
+  background-color: rgb(129, 129, 148);
+  margin: 15px;
+  cursor: pointer;
+
+}
+
+
+/* mer_cont */
+
+.games .mer_cont {
+  width: 70%;
+  height: 60%;
+  background-image: url(../assets/back.jpg);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  position: relative;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-right: 11%;
+  color: white;
+}
+
+.mer_cont .re_local {
+  width: 100%;
+  height: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.re_local #remote_game {
+  width: 290px;
+  height: 70%;
+  padding: 10px 15px 15px 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(25, 26, 29, 0.6);
+}
+
+.re_local #local_game {
+  width: 290px;
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px 15px 15px 15px;
+  align-items: center;
+  background-color: rgba(25, 26, 29, 0.6);
+  
+}
+
+
+#local_game  .input {
+  width: 200px;
+  height: 40px;
+  border: none;
+  outline: none;
+  /* caret-color: rgb(255, 81, 0); */
+  background-color: rgb(255, 255, 255);
+  border-radius: 30px;
+  padding-left: 15px;
+  letter-spacing: 0.8px;
+  color: rgb(19, 19, 19);
+  font-size: 13.4px;
+}
+
+
+.mer_cont #butt_game {
+  padding: 11px;
+  background-color: black;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+
+.mer_cont .discription_game {
+  width: 100%;
+  display: flex;
+  padding: 15px;
+  justify-content: center;
+}
+
+.mer_cont .discription_game .text {
+  background-color: rgba(170, 81, 81, 0.8);
+  padding: 15px;
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+/* moloaa cont */
+
+.games .mol_cont {
+  width: 73%;
+  height: 60%;
+  background-color: red;
+  position: relative;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  margin-left: 91px;
+}
+
+
+.exit_pup {
+  display: flex;
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  right: 0;
+  font-size: 25px;
+}
+
+
+ /*  ======= ====== ====== ======= ======= ====== ======= ======= */
+
+
+  .main .friends_list .friends .onlinen {
+  width: 15px;
+  height: 15px;
+  background-color: gray;
+  border-radius: 50%;
+  margin-top: 25px;
+  margin-left: -15px;
+
+ }
+
+
+
+
+/*  here i will work with match history tag and ping and turn */
+
+
+
+
+
+
+
+
+ /* responsive from here */
+
+
+ 
+ 
+ 
+ @media (max-width: 585px) {
+   
+   /* here i will work with sitting change info  */
+
+   .update_data .profile {
+     width: 350px;
+     height: 560px;
+     background-color: #343650;
+     display: flex;
+     flex-direction: column;
+     justify-content: space-between;
+     align-items: center;
+     padding: 5px;
+     border-radius: 10px;
+    }
+   
+    
+    .update_data .profile .form .input {
+      width: 95%;
+      justify-content: flex-end;
+      
+      background: rgb(73, 70, 70);
+      border: none;
+      padding: 8px 20px;
+      margin: 15px 2px;
+      border-radius: 20px;
+      box-shadow: #5b6164 0px 10px 10px -5px;
+      border-inline: 2px solid transparent;
+      }
+      
+
+      .update_data .profile #update_img_profile {
+        width: 98%;
+        margin: 5px;
+        height: 15vh;
+        display: flex;
+        cursor: pointer;
+        }
+        
+        .update_data .profile #update_avatar {
+          position: absolute;
+          object-fit: cover;
+          /* position: ; */
+          width: 100px;
+          height: 100px;
+          border-radius: 50%;
+          display: flex;
+          top: 15px;
+          }
+          
+  }
+
+
+  @media (max-width: 405px) {
+
+   /* here i will work with sitting change info  */
+
+
+    .update_data .profile {
+      width: 290px;
+      height: 560px;
+      background-color: #343650;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5px;
+      border-radius: 10px;
+     }
+     .update_data .profile .form div {
+      width: 95%;
+      }
+
+
+      
+  }
+
+
+
+
+  /* here i will work with media off all page lol */
+
+  @media (max-width: 1128px) {
+
+    .content .profile .matt  {
+      display: flex;
+    }
+
+    .content .matches .match_wl {
+      display: none;
+    }
+
+    .main-content .main {
+      /* background-color: red; */
+      /* top: 20px; */
+      display: flex;
+      /* flex-direction: column; */
+      height: 88vh;
+      width: 98%;
+      justify-content: space-between;
+    }
+    .main .content {
+      width: 100%;
+      margin: 5px;
+      /* background-color: yellow; */
+      height: 87vh;
+    }
+    .main .friends_list {
+      width: 25%;
+      height: 45vh;
+      margin: 5px;
+      background-color: #343650;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-y: auto;
+      border-radius: 25px;
+      position: absolute;
+      /* top: 470px;
+       */
+      bottom: 35px;
+       right: 30px;
+      }
+      
+
+  }
+
+
+  @media (max-width: 835px) {
+
+    /* .sear .seafr {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        margin-top: 8vh;
+        min-height: 100px;
+        width: 260px;
+        border-radius: 25px;
+        margin-left: 190px;
+    } */
+  
+    .sidebar {
+    margin-top: 80px;
+  
+        position: relative;
+        top: 0;
+        left: 15px;
+        border-radius: 25px;
+        height: 1px;
+        width: 88px;
+        padding: 3px 14px;
+        background-color: var(--body-color);
+        transition: var(--tran-05);
+        overflow: hidden;
+    }
+
+    .container .navbar {
+      position: fixed;
+      min-height: 10vh;
+      width: 5em;
+      z-index: 1;
+
+      }
+    
+  
+    .sidebar.active {
+        
+      position: relative;
+      top: 0;
+      margin-top: 130px;
+      left: 15px;
+      height: calc(100vh - 160px);
+      border-radius: 25px;
+      width: 88px;
+      padding: 10px 14px;
+      background-color: var(--sidebar-color);
+      transition: var(--tran-05);
+        }
+  
+    #butt {
+        display: flex;
+        /* width: 45px; */
+        font-size: 30px;
+        cursor: pointer;
+        color: #e8ebfb;
+    }
+  
+    .container .main-content {
+      padding-top: 10vh;
+      padding-left: 1.2em;
+      height: 90vh;
+      width: 100%;
+    }
+    
+    .content .profile #avatar  {
+      position: absolute;
+      width: 80px;
+      object-fit: cover;
+      height: 80px;
+      border-radius: 50%;
+      top: 41vh;
+      left: 30px;
+      /* z-index: 1; */
+    
+    }
+
+    
+    .content .profile #profile_username  {
+      /* justify-content: center; */
+      display: flex;
+      align-items: center;
+      font-size: 25px;
+      padding-left: 100px;
+      color: #e8ebfb;
+    }
+    
+  
+    .content .matches .match_history {
+      width: 380px;
+      display: flex;
+      flex-direction: column;
+      height: 45vh;
+      background-color: #343650;
+      align-items: center;
+      overflow-y: auto;
+      border-radius: 25px;
+      /* justify-content: center; */
+      
+      }
+      .play {
+        display: flex;        
+        position: relative;
+        align-items: center; 
+        justify-content: space-between;
+        margin-top: 15px;
+        width: 90%;
+        }
+        .play h2 {
+          margin: 0 5px; 
+          }
+  
+  
+  }
+  
+
+  @media (max-width: 765px) {
+    .main .friends_list {
+      width: 200px;
+      height: 45vh;
+      margin: 5px;
+      background-color: #343650;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-y: auto;
+      border-radius: 25px;
+      position: absolute;
+      /* top: 471px;
+       */
+       bottom: 35px;
+      right: 30px;
+      }
+
+  }
+
+
+
+  @media (max-width: 666px) {
+  
+  
+    .main .friends_list {
+      width: 250px;
+      height: 55vh;
+      margin: 5px;
+      background-color: #343650;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      overflow-y: auto;
+      border-radius: 25px;
+      position: absolute;
+      /* justify-content: center; */
+      top: 15%;
+      left: 25%;
+      }
+      .content .matches {
+        width: 99%;
+        margin: 3px;
+        height: 45.5vh;
+        /* background-color: aqua; */
+        display: flex;
+        justify-content: center;
+        /* align-items: center; */
+      }
+      
+      .container .bi-person-add {
+        font-size: 30px;
+        display: flex;
+        position: absolute;
+        padding: 18px;
+        background-color: #ff5e57;
+        bottom: 15px;
+        right: 15px;
+        border-radius: 50%;
+        cursor: pointer;
+      }
+      
+      .content .matches .match_history {
+        width: 390px;
+        display: flex;
+        flex-direction: column;
+        height: 40vh;
+        background-color: #343650;
+        align-items: center;
+        overflow-y: auto;
+        border-radius: 25px;
+        /* justify-content: center; */
+        
+        }
+
+  }
+
+
+@media (max-width: 485px){
+  .main .friends_list {
+    width: 250px;
+    height: 55vh;
+    margin: 5px;
+    background-color: #343650;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto;
+    border-radius: 25px;
+    position: absolute;
+    /* justify-content: center; */
+    top: 15%;
+    left: 15%;
+    }
+
+}
+
+
+  @media (max-width: 426px) {
+      .play h2 {
+        margin: 0 5px; 
+        font-size: 15px;
+        }
+        
+        .content .matches .match_history {
+          width: 300px;
+          display: flex;
+          flex-direction: column;
+          height: 40vh;
+          background-color: #343650;
+          align-items: center;
+          overflow-y: auto;
+          border-radius: 25px;
+          /* justify-content: center; */
+          
+          }
+    
+          .content .profile #edit_profile  {
+            /* border: 5px #e8ebfb; */
+            padding: 4px 12px;
+            background-color: #ff5e57;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 12px;
+          }
+          .container .main-content {
+            padding-top: 10vh;
+            padding-left: 0.2em;
+            height: 90vh;
+            width: 100%;
+          }
+      
+          .content .profile .cent  {
+            background-color: rgb(129, 129, 148, 0.5);
+            display: flex;
+            
+            padding: 5px 15px;
+            transform: translateY(-11px);
+            width: 70%;
+            align-items: center;
+            justify-content: space-between;
+            margin-left:85px;
+          
+          }
+          
+            .content .profile #profile_username {
+              display: flex;
+              align-items: center;
+              font-size: 18px;
+              padding-left: 110px;
+              color: #e8ebfb;
+          }
+                
+      
+  }
+
+  @media (max-width: 350px) {
+
+    #butt {
+        display: flex;
+        /* width: 45px; */
+        font-size: 30px;
+        cursor: pointer;
+        color: #e8ebfb;
+    }
+  
+    .main .friends_list {
+      width: 250px;
+      height: 55vh;
+      margin: 5px;
+      background-color: #343650;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      overflow-y: auto;
+      border-radius: 25px;
+      position: absolute;
+      /* justify-content: center; */
+      top: 15%;
+      left: 10%;
+      }
+  
+
+    /* .sidebar .image-text img {
+        width: 70px;
+        border-radius: 6px;
+        padding-top: 3px;
+    } */
+  }
+  
+  @media (max-width: 400px) {
+    .header .profile .image img {
+        display: none;
+    }
+    .notifi_btn {
+      display: none;
+      width: 200px;
+      height: 250px;
+      background-color: #474554;
+      position: absolute;
+      right: 50px;
+      top: 65px;
+      border-radius: 25px;
+      overflow-y: auto;
+    }
+    
+  }
+  
+  /* .player1 {
+    white-space: nowrap;
+    width: 204px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  } */

@@ -1,0 +1,246 @@
+# compose_version: '3.8'
+services:
+  auth-api:
+    image: auth
+    container_name: auth-api
+    build: ./backend/auth
+    ports:
+      - 8000:8000
+    volumes:
+      - auth:/authentication
+    command: python manage.py runsslserver --certificate /etc/ssl/certs/server.crt --key /etc/ssl/private/server.key 0.0.0.0:8000
+    # command: python -m gunicorn auth.asgi:application -k uvicorn.workers.UvicornWorker --certfile=/etc/ssl/certs/cert.pem --keyfile=/etc/ssl/private/cert-key.pem --bind 0.0.0.0:8000
+    # command: gunicorn --certfile=/etc/ssl/certs/cert.pem --keyfile=/etc/ssl/private/cert-key.pem auth.wsgi:application --bind 0.0.0.0:8000
+    entrypoint: /entrypoint.sh
+    env_file:
+      - .env
+    depends_on:
+      - db
+      - user-management-api
+    restart: always
+    networks:
+      - my_network
+  user-management-api:
+    image: user-management
+    container_name: user-management-api
+    build: ./backend/user_management
+    ports:
+      - 8001:8001
+    volumes:
+      - user-manage:/user_management
+    entrypoint: /entrypoint.sh
+    env_file:
+      - .env
+    depends_on:
+      - db
+    restart: always
+    networks:
+      - my_network
+    # command: python manage.py runsslserver --certificate /etc/ssl/certs/cert.pem --key /etc/ssl/private/cert-key.pem 0.0.0.0:8001
+    command: python -m gunicorn user_management.asgi:application -k uvicorn.workers.UvicornWorker --certfile=/etc/ssl/certs/server.crt --keyfile=/etc/ssl/private/server.key --bind 0.0.0.0:8001
+  game-db:
+    image: game-db
+    container_name: game-db-api
+    build: ./backend/game_db
+    ports:
+      - 8002:8002
+    volumes:
+      - game-db:/game_db
+    entrypoint: /entrypoint.sh
+    env_file:
+      - .env
+    depends_on:
+      - db
+    restart: always
+    networks:
+      - my_network
+    command: python -m gunicorn game_db.asgi:application -k uvicorn.workers.UvicornWorker --certfile=/etc/ssl/certs/server.crt --keyfile=/etc/ssl/private/server.key --bind 0.0.0.0:8002
+    # command: python manage.py runsslserver --certificate /etc/ssl/certs/cert.pem --key /etc/ssl/private/cert-key.pem 0.0.0.0:8002
+  tag-game-db:
+    image: tag-game-db
+    container_name: tag-game-api
+    build: ./backend/tag_game_db
+    ports:
+      - 8003:8003
+    volumes:
+      - tag-game-db:/tag_game_db
+    entrypoint: /entrypoint.sh
+    env_file:
+      - .env
+    depends_on:
+      - db
+    restart: always
+    networks:
+      - my_network
+    command: python -m gunicorn tag_game_db.asgi:application -k uvicorn.workers.UvicornWorker --certfile=/etc/ssl/certs/server.crt --keyfile=/etc/ssl/private/server.key --bind 0.0.0.0:8003
+    # command: python manage.py runsslserver --certificate /etc/ssl/certs/cert.pem --key /etc/ssl/private/cert-key.pem 0.0.0.0:8003
+  tournament-db:
+    image: tournament-db
+    container_name: tournament-api
+    build: ./backend/tournament
+    ports:
+      - 8004:8004
+    volumes:
+      - tournament-db:/tournament
+    entrypoint: /entrypoint.sh
+    env_file:
+      - .env
+    depends_on:
+      - db
+    restart: always
+    networks:
+      - my_network
+    command: python manage.py runsslserver --certificate /etc/ssl/certs/server.crt --key /etc/ssl/private/server.key 0.0.0.0:8004
+  server:
+    image: server
+    container_name: server
+    build: ./server
+    ports:
+      - 0.0.0.0:9002:443
+      - 0.0.0.0:9003:80
+      - 0.0.0.0:9004:9004
+      - 0.0.0.0:9005:9005
+      - 0.0.0.0:9006:9006
+      - 0.0.0.0:9007:9007
+      - 0.0.0.0:9008:9008
+      - 0.0.0.0:9009:9009
+    restart: always
+    volumes:
+      - front:/var/www/pong.com
+      - ./backend/auth/media:/media
+    depends_on:
+      - auth-api
+      - user-management-api
+      - game-db
+    networks:
+      - my_network
+  db:
+    image: db
+    build:
+      context: ./db
+      args:
+        - AUTH_DB=${AUTH_DB}
+        - USER_MANAGEMENT_DB=${USER_MANAGEMENT_DB}
+        - GAME_DB=${GAME_DB}
+        - TAG_GAME_DB=${TAG_GAME_DB}
+        - TOURNAMENT_DB=${TOURNAMENT_DB}
+        - TRAINING_DATA=${TRAINING_DATA}
+    container_name: db
+    env_file:
+      - .env
+    ports:
+      - 0.0.0.0:5432:5432
+    restart: always
+    command: postgres
+    networks:
+      - my_network
+
+  tag-back:
+    image: tag-back
+    container_name: tag-back
+    build: ./backend/Tag
+    ports:
+      - 8005:8000
+    command: uvicorn project.asgi:application --host 0.0.0.0 --port 8000 --ssl-certfile=/etc/ssl/certs/server.crt --ssl-keyfile=/etc/ssl/private/server.key
+    volumes:
+      - ./backend/Tag/project:/usr/src/app/vv
+
+  remote_tag:
+      image: remote_tag
+      container_name: remote_tag
+      build: ./backend/tag-remote
+      ports:
+        - 8007:8005
+      volumes:
+      - ./backend/tag-remote:/game
+      command: uvicorn project.asgi:application --host 0.0.0.0 --port 8005 --ssl-certfile=/etc/ssl/certs/server.crt --ssl-keyfile=/etc/ssl/private/server.key
+ 
+  pong_back:
+    container_name: pong_back
+    networks:
+      - my_network
+      # - back-tier
+      # - front-tier
+    depends_on:
+      - db
+    build: ./backend/pong_backend
+    ports:
+      - "8006:8006"
+    restart: always
+    env_file: .env
+    volumes:
+      - ./backend/pong_backend/pong_game:/app/pong_game
+    entrypoint: /entrypoint.sh
+    # command: sleep infinity
+    command: uvicorn pong_game.asgi:application --host 0.0.0.0 --port 8006 --ssl-certfile=/etc/ssl/certs/server.crt --ssl-keyfile=/etc/ssl/private/server.key
+    # command: python manage.py runsslserver --certificate /etc/ssl/certs/cert.pem --key /etc/ssl/private/cert-key.pem 0.0.0.0:8006
+  jupyter:
+    container_name: jupyter
+    networks:
+      - my_network
+    depends_on:
+      - db
+    build:
+      context: jupyter container/
+    ports:
+      - 8889:8888
+    volumes:
+      - ./jupyter-data:/home/jovyan/work
+    command: start-notebook.py --NotebookApp.token='my-token'
+
+volumes:
+  auth:
+    driver: local
+    driver_opts:
+      type: none
+      device: ./backend/auth
+      o: bind
+  user-manage:
+    driver: local
+    driver_opts:
+      type: none
+      device: ./backend/user_management
+      o: bind
+  game-db:
+    driver: local
+    driver_opts:
+      type: none
+      device: ./backend/game_db
+      o: bind
+  tag-game-db:
+    driver: local
+    driver_opts:
+      type: none
+      device: ./backend/tag_game_db
+      o: bind
+  tournament-db:
+    driver: local
+    driver_opts:
+      type: none
+      device: ./backend/tournament
+      o: bind
+  front:
+    driver: local
+    driver_opts:
+      type: none
+      device: ./server/front
+      o: bind
+      
+  tag-back:
+    driver: local
+    driver_opts:
+        o: bind
+        type: none
+        device: ./backend/Tag/project/
+
+  remote_tag:
+    driver: local
+    driver_opts:
+        o: bind
+        type: none
+        device: ./backend/tag-remote/project/
+
+
+networks:
+  my_network:
+    driver: bridge
